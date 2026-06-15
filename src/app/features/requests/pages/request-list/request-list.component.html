@@ -1,0 +1,44 @@
+<div class="fc-page">
+  <app-page-header
+    title="Internal Requests"
+    subtitle="Review workflow items, approve or reject requests with confirmation dialogs and toast feedback."
+    icon="pi pi-inbox">
+  </app-page-header>
+
+  <app-loading *ngIf="loading"></app-loading>
+
+  <section *ngIf="!loading" class="request-grid">
+    <article class="request-card fc-card" *ngFor="let request of requests">
+      <div class="request-head">
+        <div>
+          <span class="fc-section-title">{{ request.code }}</span>
+          <h2>{{ request.type }}</h2>
+          <p>{{ request.summary }}</p>
+        </div>
+        <app-status-badge [value]="request.status"></app-status-badge>
+      </div>
+
+      <div class="workflow">
+        <div class="step done"><i class="pi pi-file"></i><span>Created</span></div>
+        <div class="line"></div>
+        <div class="step" [class.done]="request.status !== status.Pending"><i class="pi pi-shield"></i><span>Review</span></div>
+        <div class="line"></div>
+        <div class="step" [class.done]="request.status === status.Approved || request.status === status.Rejected"><i class="pi pi-check-circle"></i><span>Decision</span></div>
+      </div>
+
+      <div class="request-meta">
+        <div><span>Customer</span><strong>{{ request.customerName }}</strong></div>
+        <div><span>Owner</span><strong>{{ request.owner }}</strong></div>
+        <div><span>Priority</span><strong>{{ request.priority }}</strong></div>
+        <div><span>SLA</span><strong>{{ request.slaHours }}h</strong></div>
+      </div>
+
+      <div class="request-actions" *ngIf="request.status === status.Pending">
+        <button pButton type="button" label="Reject" icon="pi pi-times" class="p-button-outlined p-button-danger" (click)="reject(request)"></button>
+        <button pButton type="button" label="Approve" icon="pi pi-check" (click)="approve(request)"></button>
+      </div>
+    </article>
+  </section>
+
+  <app-empty-state *ngIf="!loading && requests.length === 0" title="No internal requests" description="There are no workflow items pending at this moment."></app-empty-state>
+</div>

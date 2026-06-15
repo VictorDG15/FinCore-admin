@@ -1,0 +1,26 @@
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1.5fr .9fr;
+  gap: 1rem;
+}
+
+.chart-card { padding: 1.2rem; min-height: 390px; }
+.card-heading { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+.card-heading h2 { margin: .25rem 0 0; font-weight: 800; color: var(--fc-primary); font-size: 1.15rem; }
+.pill { border-radius: 999px; background: var(--fc-accent-soft); color: #075985; font-weight: 800; padding: .4rem .75rem; font-size: .78rem; }
+small { color: var(--fc-muted); }
+
+@media (max-width: 1200px) {
+  .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dashboard-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .kpi-grid { grid-template-columns: 1fr; }
+}

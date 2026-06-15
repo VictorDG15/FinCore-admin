@@ -1,0 +1,13 @@
+<div class="page-header fc-card">
+  <div class="header-icon">
+    <i [class]="icon"></i>
+  </div>
+  <div>
+    <p class="eyebrow mb-1">{{ eyebrow }}</p>
+    <h1>{{ title }}</h1>
+    <p class="subtitle" *ngIf="subtitle">{{ subtitle }}</p>
+  </div>
+  <div class="header-actions">
+    <ng-content></ng-content>
+  </div>
+</div>

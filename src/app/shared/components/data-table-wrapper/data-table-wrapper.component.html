@@ -1,0 +1,10 @@
+<section class="data-wrapper fc-card">
+  <div class="data-wrapper__header" *ngIf="title || subtitle">
+    <div>
+      <h2>{{ title }}</h2>
+      <p *ngIf="subtitle">{{ subtitle }}</p>
+    </div>
+    <div class="actions"><ng-content select="[table-actions]"></ng-content></div>
+  </div>
+  <ng-content></ng-content>
+</section>

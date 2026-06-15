@@ -1,0 +1,42 @@
+.login-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  background: radial-gradient(circle at 20% 20%, rgba(56, 189, 248, .22), transparent 25rem), linear-gradient(135deg, #0f172a, #102a43);
+  padding: clamp(1rem, 3vw, 3rem);
+  gap: 2rem;
+  align-items: center;
+}
+
+.login-hero { color: white; max-width: 720px; padding: 1rem; }
+.brand-mark {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #38bdf8, #2563eb);
+  font-weight: 900;
+  margin-bottom: 1.5rem;
+}
+.eyebrow { color: #7dd3fc; text-transform: uppercase; font-size: .78rem; letter-spacing: .14em; font-weight: 800; }
+h1 { font-size: clamp(2rem, 4vw, 4rem); font-weight: 900; line-height: 1.05; margin: 0 0 1rem; }
+.hero-copy { color: #cbd5e1; font-size: 1.05rem; max-width: 35rem; }
+.hero-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .9rem; margin-top: 2rem; }
+.hero-grid div { padding: 1rem; border-radius: 18px; background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .12); }
+.hero-grid strong { display: block; font-size: 1.35rem; }
+.hero-grid span { color: #cbd5e1; font-size: .8rem; }
+
+.login-card { padding: clamp(1.5rem, 3vw, 2.5rem); max-width: 480px; width: 100%; justify-self: center; }
+.card-title h2 { color: var(--fc-primary); font-size: 1.7rem; margin: .45rem 0; font-weight: 900; }
+.card-title p { color: var(--fc-muted); }
+.login-form { display: grid; gap: 1rem; margin-top: 1.5rem; }
+label { font-weight: 800; color: var(--fc-primary); margin-bottom: .35rem; display: block; }
+.remember { display: flex; align-items: center; gap: .55rem; margin: 0; }
+.remember span { color: var(--fc-muted); font-weight: 600; }
+.remember-row a { color: var(--fc-primary-600); font-weight: 700; }
+
+@media (max-width: 991px) {
+  .login-page { grid-template-columns: 1fr; }
+  .hero-grid { grid-template-columns: 1fr; }
+}

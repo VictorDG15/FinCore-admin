@@ -1,0 +1,74 @@
+<div class="fc-page">
+  <app-page-header
+    title="Transactions"
+    subtitle="Advanced view for operational movements with filters, status badges and simulated export."
+    icon="pi pi-arrow-right-arrow-left">
+    <button pButton type="button" label="Export CSV" icon="pi pi-file-export" class="p-button-outlined" (click)="exportTransactions()"></button>
+  </app-page-header>
+
+  <section class="filters fc-card" [formGroup]="filters">
+    <div><label>From</label><p-calendar formControlName="fromDate" dateFormat="yy-mm-dd" [showIcon]="true"></p-calendar></div>
+    <div><label>To</label><p-calendar formControlName="toDate" dateFormat="yy-mm-dd" [showIcon]="true"></p-calendar></div>
+    <div><label>Status</label><p-dropdown formControlName="status" [options]="statusOptions" placeholder="All" [showClear]="true"></p-dropdown></div>
+    <div><label>Type</label><p-dropdown formControlName="type" [options]="typeOptions" placeholder="All" [showClear]="true"></p-dropdown></div>
+    <div><label>Min amount</label><p-inputNumber formControlName="minAmount" mode="decimal" [minFractionDigits]="0"></p-inputNumber></div>
+    <div><label>Max amount</label><p-inputNumber formControlName="maxAmount" mode="decimal" [minFractionDigits]="0"></p-inputNumber></div>
+    <div class="filter-actions">
+      <button pButton type="button" label="Apply" icon="pi pi-filter" (click)="loadTransactions()"></button>
+      <button pButton type="button" label="Clear" icon="pi pi-times" class="p-button-text" (click)="clearFilters()"></button>
+    </div>
+  </section>
+
+  <app-loading *ngIf="loading"></app-loading>
+
+  <app-data-table-wrapper *ngIf="!loading" title="Operational ledger" subtitle="Movements are served from frontend mocks through RxJS observables.">
+    <p-table [value]="transactions" [paginator]="true" [rows]="8" responsiveLayout="stack" [breakpoint]="'960px'" sortField="createdAt" [sortOrder]="-1">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Operation</th>
+          <th>Customer</th>
+          <th>Account</th>
+          <th>Type</th>
+          <th>Amount</th>
+          <th>Status</th>
+          <th class="text-end">Detail</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-transaction>
+        <tr>
+          <td><strong>{{ transaction.operationCode }}</strong><br><small>{{ transaction.createdAt | date:'MMM d, y HH:mm' }}</small></td>
+          <td>{{ transaction.customerName }}</td>
+          <td>{{ transaction.accountNumber }}</td>
+          <td>{{ transaction.type }}</td>
+          <td><strong>{{ transaction.currency }} {{ transaction.amount | number:'1.2-2' }}</strong><br><small>Fee {{ transaction.fee | number:'1.2-2' }}</small></td>
+          <td><app-status-badge [value]="transaction.status"></app-status-badge></td>
+          <td class="text-end"><button pButton type="button" icon="pi pi-eye" class="p-button-text" (click)="viewTransaction(transaction)"></button></td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr><td colspan="7"><app-empty-state title="No transactions found" description="Adjust dates, amount or operation status filters."></app-empty-state></td></tr>
+      </ng-template>
+    </p-table>
+  </app-data-table-wrapper>
+
+  <p-dialog [visible]="detailVisible" [modal]="true" header="Transaction detail" [style]="{ width: '620px', maxWidth: '96vw' }" (onHide)="detailVisible = false">
+    <div *ngIf="selectedTransaction" class="transaction-detail">
+      <div class="detail-header">
+        <div>
+          <span class="fc-section-title">{{ selectedTransaction.operationCode }}</span>
+          <h2>{{ selectedTransaction.currency }} {{ selectedTransaction.amount | number:'1.2-2' }}</h2>
+        </div>
+        <app-status-badge [value]="selectedTransaction.status"></app-status-badge>
+      </div>
+      <div class="detail-grid">
+        <div><span>Customer</span><strong>{{ selectedTransaction.customerName }}</strong></div>
+        <div><span>Account</span><strong>{{ selectedTransaction.accountNumber }}</strong></div>
+        <div><span>Type</span><strong>{{ selectedTransaction.type }}</strong></div>
+        <div><span>Channel</span><strong>{{ selectedTransaction.channel }}</strong></div>
+        <div><span>Fee</span><strong>{{ selectedTransaction.currency }} {{ selectedTransaction.fee | number:'1.2-2' }}</strong></div>
+        <div><span>Date</span><strong>{{ selectedTransaction.createdAt | date:'medium' }}</strong></div>
+        <div class="full"><span>Description</span><strong>{{ selectedTransaction.description }}</strong></div>
+      </div>
+    </div>
+  </p-dialog>
+</div>

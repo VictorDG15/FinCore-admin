@@ -1,0 +1,40 @@
+<p-dialog
+  [visible]="visible"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+  [style]="{ width: '680px', maxWidth: '96vw' }"
+  [header]="user ? 'Edit internal user' : 'Create internal user'"
+  (onHide)="closed.emit()">
+  <form [formGroup]="form" id="userForm" class="fc-form-grid" (ngSubmit)="submit()">
+    <div>
+      <label>Full name</label>
+      <input pInputText formControlName="fullName">
+      <app-form-field-error [control]="form.controls.fullName" label="Full name"></app-form-field-error>
+    </div>
+    <div>
+      <label>Email</label>
+      <input pInputText formControlName="email">
+      <app-form-field-error [control]="form.controls.email" label="Email"></app-form-field-error>
+    </div>
+    <div>
+      <label>Role</label>
+      <p-dropdown formControlName="role" [options]="roleOptions"></p-dropdown>
+      <app-form-field-error [control]="form.controls.role" label="Role"></app-form-field-error>
+    </div>
+    <div>
+      <label>Status</label>
+      <p-dropdown formControlName="status" [options]="statusOptions"></p-dropdown>
+      <app-form-field-error [control]="form.controls.status" label="Status"></app-form-field-error>
+    </div>
+    <div class="full">
+      <label>Department</label>
+      <input pInputText formControlName="department">
+      <app-form-field-error [control]="form.controls.department" label="Department"></app-form-field-error>
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <button pButton type="button" label="Cancel" class="p-button-text" (click)="closed.emit()"></button>
+    <button pButton type="submit" form="userForm" label="Save user" icon="pi pi-check" [loading]="loading"></button>
+  </ng-template>
+</p-dialog>

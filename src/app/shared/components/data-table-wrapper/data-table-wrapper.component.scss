@@ -1,0 +1,12 @@
+.data-wrapper { padding: 1rem; overflow: hidden; }
+.data-wrapper__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+h2 { margin: 0; font-weight: 800; color: var(--fc-primary); font-size: 1.1rem; }
+p { margin: .25rem 0 0; color: var(--fc-muted); }
+.actions { display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; }
+@media (max-width: 768px) { .data-wrapper__header { align-items: stretch; flex-direction: column; } }

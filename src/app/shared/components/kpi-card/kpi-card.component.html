@@ -1,0 +1,12 @@
+<div class="kpi-card fc-card">
+  <div class="icon"><i [class]="data.icon"></i></div>
+  <div class="content">
+    <p>{{ data.title }}</p>
+    <h2>{{ data.value }}</h2>
+    <span>{{ data.subtitle }}</span>
+  </div>
+  <div class="trend" [class]="trendClass">
+    <i [class]="trendIcon"></i>
+    {{ data.trendValue }}
+  </div>
+</div>

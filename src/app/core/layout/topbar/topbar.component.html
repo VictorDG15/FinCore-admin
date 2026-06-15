@@ -1,0 +1,21 @@
+<header class="topbar">
+  <button pButton type="button" icon="pi pi-bars" class="p-button-text d-none d-lg-inline-flex" (click)="toggleSidebar.emit()"></button>
+  <button pButton type="button" icon="pi pi-bars" class="p-button-text d-inline-flex d-lg-none" (click)="toggleMobileSidebar.emit()"></button>
+
+  <div class="search d-none d-md-flex">
+    <i class="pi pi-search"></i>
+    <span>Search customers, accounts or operations</span>
+  </div>
+
+  <div class="topbar-actions ms-auto" *ngIf="user$ | async as user">
+    <button pButton type="button" icon="pi pi-bell" class="p-button-text p-button-rounded" pBadge value="3" badgeClass="p-badge-info"></button>
+    <div class="profile">
+      <div class="avatar">{{ user.fullName | initials }}</div>
+      <div class="profile-copy d-none d-sm-grid">
+        <strong>{{ user.fullName }}</strong>
+        <span>{{ user.role }} · {{ user.office }}</span>
+      </div>
+    </div>
+    <button pButton type="button" icon="pi pi-sign-out" class="p-button-text" (click)="logout()" pTooltip="Logout"></button>
+  </div>
+</header>

@@ -1,0 +1,5 @@
+.user-cell { display: flex; align-items: center; gap: .75rem; }
+.avatar { width: 42px; height: 42px; border-radius: 14px; display: grid; place-items: center; background: var(--fc-primary); color: #fff; font-weight: 900; }
+.user-cell strong { display: block; color: var(--fc-primary); }
+.user-cell small { color: var(--fc-muted); }
+.role-chip { display: inline-block; border-radius: 999px; background: var(--fc-accent-soft); color: #075985; font-weight: 900; padding: .35rem .65rem; font-size: .78rem; }

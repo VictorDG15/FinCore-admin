@@ -1,0 +1,99 @@
+:root {
+  --fc-primary: #102a43;
+  --fc-primary-700: #153e75;
+  --fc-primary-600: #1d4ed8;
+  --fc-accent: #38bdf8;
+  --fc-accent-soft: #e0f2fe;
+  --fc-bg: #f5f7fb;
+  --fc-surface: #ffffff;
+  --fc-border: #d9e2ec;
+  --fc-text: #162033;
+  --fc-muted: #64748b;
+  --fc-danger: #dc2626;
+  --fc-success: #16a34a;
+  --fc-warning: #d97706;
+  --fc-sidebar: #0f172a;
+  --fc-sidebar-active: rgba(56, 189, 248, .16);
+  --fc-shadow: 0 18px 45px rgba(15, 23, 42, .08);
+  --fc-radius: 18px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--fc-bg);
+  color: var(--fc-text);
+}
+
+a { text-decoration: none; }
+
+.fc-shell {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(56, 189, 248, .12), transparent 34rem),
+    linear-gradient(180deg, #f8fafc 0%, #eef3f9 100%);
+}
+
+.fc-card {
+  background: var(--fc-surface);
+  border: 1px solid rgba(217, 226, 236, .84);
+  border-radius: var(--fc-radius);
+  box-shadow: var(--fc-shadow);
+}
+
+.fc-section-title {
+  font-size: .78rem;
+  letter-spacing: .09em;
+  color: var(--fc-muted);
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.fc-muted { color: var(--fc-muted); }
+
+.fc-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.fc-form-grid .full { grid-column: 1 / -1; }
+
+.fc-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.fc-soft-panel {
+  border: 1px solid var(--fc-border);
+  border-radius: 16px;
+  background: #f8fafc;
+  padding: 1rem;
+}
+
+.p-component { font-family: inherit; }
+.p-button { border-radius: 12px; font-weight: 700; }
+.p-inputtext, .p-dropdown, .p-calendar, .p-inputnumber-input, .p-password input, textarea.p-inputtextarea {
+  border-radius: 12px;
+  width: 100%;
+}
+.p-dialog .p-dialog-header { border-bottom: 1px solid #e2e8f0; }
+.p-dialog .p-dialog-footer { border-top: 1px solid #e2e8f0; }
+.p-datatable .p-datatable-thead > tr > th {
+  background: #f8fafc;
+  color: #334155;
+  font-size: .78rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.p-datatable .p-datatable-tbody > tr { transition: background .2s ease; }
+.p-datatable .p-datatable-tbody > tr:hover { background: #f8fafc; }
+.p-paginator { border: 0; padding-top: 1rem; }
+
+@media (max-width: 991px) {
+  .fc-form-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,7 @@
+<nav class="breadcrumb-bar" *ngIf="breadcrumbs$ | async as breadcrumbs">
+  <span>Home</span>
+  <ng-container *ngFor="let breadcrumb of breadcrumbs">
+    <i class="pi pi-chevron-right"></i>
+    <strong>{{ breadcrumb }}</strong>
+  </ng-container>
+</nav>

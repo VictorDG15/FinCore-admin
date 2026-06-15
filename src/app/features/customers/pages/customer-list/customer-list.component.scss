@@ -1,0 +1,5 @@
+.customer-cell { display: flex; align-items: center; gap: .75rem; }
+.avatar { width: 42px; height: 42px; border-radius: 14px; display: grid; place-items: center; background: var(--fc-accent-soft); color: #075985; font-weight: 900; }
+.customer-cell strong { display: block; color: var(--fc-primary); }
+.customer-cell small { color: var(--fc-muted); }
+:host ::ng-deep .p-progressbar { height: .65rem; border-radius: 999px; min-width: 110px; }

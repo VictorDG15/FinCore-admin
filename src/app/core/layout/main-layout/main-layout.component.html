@@ -1,0 +1,20 @@
+<div class="layout fc-shell" [class.sidebar-collapsed]="sidebarCollapsed" [class.mobile-open]="mobileSidebarOpen">
+  <app-sidebar
+    [collapsed]="sidebarCollapsed"
+    [mobileOpen]="mobileSidebarOpen"
+    (closeSidebar)="closeMobileSidebar()">
+  </app-sidebar>
+
+  <div class="overlay" (click)="closeMobileSidebar()"></div>
+
+  <main class="main-content">
+    <app-topbar
+      (toggleSidebar)="toggleSidebar()"
+      (toggleMobileSidebar)="toggleMobileSidebar()">
+    </app-topbar>
+    <div class="content-container">
+      <app-breadcrumb></app-breadcrumb>
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

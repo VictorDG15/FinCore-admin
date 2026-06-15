@@ -1,0 +1,10 @@
+.breadcrumb-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  color: var(--fc-muted);
+  font-size: .82rem;
+  margin-bottom: 1rem;
+}
+.breadcrumb-bar i { font-size: .65rem; }
+.breadcrumb-bar strong { color: var(--fc-primary); }

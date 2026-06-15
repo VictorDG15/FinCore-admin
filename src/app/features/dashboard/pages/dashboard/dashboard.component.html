@@ -1,0 +1,64 @@
+<div class="fc-page">
+  <app-page-header
+    title="Executive Dashboard"
+    subtitle="Real-time snapshot of customers, accounts, internal requests and financial performance."
+    icon="pi pi-chart-line">
+    <button pButton type="button" label="Export summary" icon="pi pi-download" class="p-button-outlined"></button>
+  </app-page-header>
+
+  <app-loading *ngIf="loading" [rows]="5"></app-loading>
+
+  <ng-container *ngIf="!loading">
+    <section class="kpi-grid">
+      <app-kpi-card *ngFor="let kpi of kpis" [data]="kpi"></app-kpi-card>
+    </section>
+
+    <section class="dashboard-grid">
+      <div class="fc-card chart-card wide">
+        <div class="card-heading">
+          <div>
+            <span class="fc-section-title">Financial indicators</span>
+            <h2>Monthly cash flow</h2>
+          </div>
+          <span class="pill">2026 YTD</span>
+        </div>
+        <p-chart type="line" [data]="cashFlowData" [options]="chartOptions" height="310px"></p-chart>
+      </div>
+
+      <div class="fc-card chart-card">
+        <div class="card-heading">
+          <div>
+            <span class="fc-section-title">Portfolio</span>
+            <h2>Products mix</h2>
+          </div>
+        </div>
+        <p-chart type="doughnut" [data]="portfolioData" height="310px"></p-chart>
+      </div>
+    </section>
+
+    <app-data-table-wrapper title="Latest operations" subtitle="Most recent simulated banking operations.">
+      <p-table [value]="lastTransactions" responsiveLayout="stack" [breakpoint]="'960px'">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Operation</th>
+            <th>Customer</th>
+            <th>Type</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Channel</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-transaction>
+          <tr>
+            <td><strong>{{ transaction.operationCode }}</strong><br><small>{{ transaction.createdAt | date:'MMM d, y HH:mm' }}</small></td>
+            <td>{{ transaction.customerName }}</td>
+            <td>{{ transaction.type }}</td>
+            <td>{{ transaction.currency }} {{ transaction.amount | number:'1.2-2' }}</td>
+            <td><app-status-badge [value]="transaction.status"></app-status-badge></td>
+            <td>{{ transaction.channel }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </app-data-table-wrapper>
+  </ng-container>
+</div>

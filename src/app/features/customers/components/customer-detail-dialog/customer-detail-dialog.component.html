@@ -1,0 +1,28 @@
+<p-dialog
+  [visible]="visible"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+  [style]="{ width: '620px', maxWidth: '96vw' }"
+  header="Customer profile"
+  (onHide)="closed.emit()">
+  <ng-container *ngIf="customer">
+    <div class="profile-head">
+      <div class="avatar">{{ customer.fullName | initials }}</div>
+      <div>
+        <h2>{{ customer.fullName }}</h2>
+        <p>{{ customer.segment }} · {{ customer.city }}</p>
+      </div>
+      <app-status-badge [value]="customer.status"></app-status-badge>
+    </div>
+
+    <div class="detail-grid">
+      <div><span>Document</span><strong>{{ customer.documentNumber }}</strong></div>
+      <div><span>Email</span><strong>{{ customer.email }}</strong></div>
+      <div><span>Phone</span><strong>{{ customer.phone }}</strong></div>
+      <div><span>Monthly income</span><strong>S/ {{ customer.monthlyIncome | number:'1.2-2' }}</strong></div>
+      <div><span>Risk score</span><strong>{{ customer.riskScore }} / 100</strong></div>
+      <div><span>Created at</span><strong>{{ customer.createdAt | date:'mediumDate' }}</strong></div>
+    </div>
+  </ng-container>
+</p-dialog>

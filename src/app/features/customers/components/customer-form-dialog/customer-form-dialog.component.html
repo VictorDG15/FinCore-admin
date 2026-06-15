@@ -1,0 +1,63 @@
+<p-dialog
+  [visible]="visible"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+  [style]="{ width: '760px', maxWidth: '96vw' }"
+  [header]="customer ? 'Edit customer' : 'Create customer'"
+  (onHide)="closed.emit()">
+  <form [formGroup]="form" class="fc-form-grid" id="customerForm" (ngSubmit)="submit()">
+    <div>
+      <label>Document number</label>
+      <input pInputText formControlName="documentNumber" placeholder="DNI / RUC">
+      <app-form-field-error [control]="form.controls.documentNumber" label="Document"></app-form-field-error>
+    </div>
+
+    <div>
+      <label>Full name</label>
+      <input pInputText formControlName="fullName" placeholder="Customer name">
+      <app-form-field-error [control]="form.controls.fullName" label="Full name"></app-form-field-error>
+    </div>
+
+    <div>
+      <label>Email</label>
+      <input pInputText formControlName="email" placeholder="customer@company.com">
+      <app-form-field-error [control]="form.controls.email" label="Email"></app-form-field-error>
+    </div>
+
+    <div>
+      <label>Phone</label>
+      <input pInputText formControlName="phone" placeholder="+51 900 000 000">
+      <app-form-field-error [control]="form.controls.phone" label="Phone"></app-form-field-error>
+    </div>
+
+    <div>
+      <label>Segment</label>
+      <p-dropdown formControlName="segment" [options]="segmentOptions" placeholder="Select segment"></p-dropdown>
+      <app-form-field-error [control]="form.controls.segment" label="Segment"></app-form-field-error>
+    </div>
+
+    <div>
+      <label>Status</label>
+      <p-dropdown formControlName="status" [options]="statusOptions" placeholder="Select status"></p-dropdown>
+      <app-form-field-error [control]="form.controls.status" label="Status"></app-form-field-error>
+    </div>
+
+    <div>
+      <label>Monthly income</label>
+      <p-inputNumber formControlName="monthlyIncome" mode="currency" currency="PEN" locale="es-PE"></p-inputNumber>
+      <app-form-field-error [control]="form.controls.monthlyIncome" label="Monthly income"></app-form-field-error>
+    </div>
+
+    <div>
+      <label>City</label>
+      <input pInputText formControlName="city" placeholder="Lima">
+      <app-form-field-error [control]="form.controls.city" label="City"></app-form-field-error>
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+    <button pButton type="button" label="Cancel" class="p-button-text" (click)="closed.emit()"></button>
+    <button pButton type="submit" form="customerForm" label="Save customer" icon="pi pi-check" [loading]="loading"></button>
+  </ng-template>
+</p-dialog>

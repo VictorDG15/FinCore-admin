@@ -1,0 +1,43 @@
+.topbar {
+  height: 74px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1.5rem;
+  background: rgba(255, 255, 255, .78);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(217, 226, 236, .85);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.search {
+  height: 44px;
+  min-width: min(420px, 45vw);
+  align-items: center;
+  gap: .65rem;
+  border: 1px solid var(--fc-border);
+  border-radius: 999px;
+  color: var(--fc-muted);
+  padding: 0 1rem;
+  background: #f8fafc;
+}
+
+.topbar-actions { display: flex; align-items: center; gap: .7rem; }
+.profile { display: flex; align-items: center; gap: .75rem; }
+.avatar {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--fc-primary);
+  color: white;
+  font-weight: 900;
+}
+.profile-copy { line-height: 1.15; }
+.profile-copy strong { color: var(--fc-primary); font-size: .9rem; }
+.profile-copy span { color: var(--fc-muted); font-size: .76rem; }
+
+@media (max-width: 768px) { .topbar { padding: 0 1rem; } }

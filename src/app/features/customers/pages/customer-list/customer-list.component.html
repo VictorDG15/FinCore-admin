@@ -1,0 +1,55 @@
+<div class="fc-page">
+  <app-page-header
+    title="Customers"
+    subtitle="Manage retail, premium, business and corporate banking customers."
+    icon="pi pi-users">
+    <button pButton type="button" label="New customer" icon="pi pi-plus" (click)="createCustomer()"></button>
+  </app-page-header>
+
+  <app-loading *ngIf="loading"></app-loading>
+
+  <app-data-table-wrapper *ngIf="!loading" title="Customer portfolio" subtitle="Search, validate and update customer information.">
+    <div table-actions>
+      <app-search-box placeholder="Search by name, document or email" (search)="searchTerm = $event"></app-search-box>
+    </div>
+
+    <p-table [value]="filteredCustomers" [paginator]="true" [rows]="6" responsiveLayout="stack" [breakpoint]="'960px'" sortField="createdAt" [sortOrder]="-1">
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="fullName">Customer <p-sortIcon field="fullName"></p-sortIcon></th>
+          <th>Segment</th>
+          <th>Document</th>
+          <th>Income</th>
+          <th>Risk</th>
+          <th>Status</th>
+          <th class="text-end">Actions</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-customer>
+        <tr>
+          <td>
+            <div class="customer-cell">
+              <div class="avatar">{{ customer.fullName | initials }}</div>
+              <div><strong>{{ customer.fullName }}</strong><small>{{ customer.email }}</small></div>
+            </div>
+          </td>
+          <td>{{ customer.segment }}</td>
+          <td>{{ customer.documentNumber }}</td>
+          <td>S/ {{ customer.monthlyIncome | number:'1.0-0' }}</td>
+          <td><p-progressBar [value]="customer.riskScore" [showValue]="true"></p-progressBar></td>
+          <td><app-status-badge [value]="customer.status"></app-status-badge></td>
+          <td class="text-end">
+            <button pButton type="button" icon="pi pi-eye" class="p-button-text" (click)="viewCustomer(customer)" pTooltip="View detail"></button>
+            <button pButton type="button" icon="pi pi-pencil" class="p-button-text" (click)="editCustomer(customer)" pTooltip="Edit"></button>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr><td colspan="7"><app-empty-state title="No customers found" description="No customer matches your current search."></app-empty-state></td></tr>
+      </ng-template>
+    </p-table>
+  </app-data-table-wrapper>
+
+  <app-customer-form-dialog [visible]="formVisible" [customer]="selectedCustomer" (closed)="closeForm()"></app-customer-form-dialog>
+  <app-customer-detail-dialog [visible]="detailVisible" [customer]="selectedCustomer" (closed)="detailVisible = false"></app-customer-detail-dialog>
+</div>

@@ -1,0 +1,43 @@
+<section class="login-page">
+  <div class="login-hero">
+    <div class="brand-mark">FC</div>
+    <p class="eyebrow">Enterprise Banking Platform</p>
+    <h1>Financial operations, customers and internal workflows in one secure console.</h1>
+    <p class="hero-copy">FinCore Admin simulates a real banking dashboard using Angular 16, PrimeNG, Bootstrap and RxJS mocks.</p>
+
+    <div class="hero-grid">
+      <div><strong>18K+</strong><span>Active customers</span></div>
+      <div><strong>S/ 4.8M</strong><span>Managed assets</span></div>
+      <div><strong>99.9%</strong><span>Frontend uptime</span></div>
+    </div>
+  </div>
+
+  <div class="login-card fc-card">
+    <div class="card-title">
+      <span class="fc-section-title">Secure access</span>
+      <h2>Sign in to FinCore</h2>
+      <p>Use the prefilled demo credentials or any valid email with a 6+ character password.</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="submit()" class="login-form">
+      <div>
+        <label>Email</label>
+        <input appAutofocus pInputText type="email" formControlName="email" placeholder="admin@fincore.pe">
+        <app-form-field-error [control]="loginForm.controls.email" label="Email"></app-form-field-error>
+      </div>
+
+      <div>
+        <label>Password</label>
+        <p-password formControlName="password" [feedback]="false" [toggleMask]="true" styleClass="w-100"></p-password>
+        <app-form-field-error [control]="loginForm.controls.password" label="Password"></app-form-field-error>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center remember-row">
+        <label class="remember"><p-checkbox formControlName="remember" [binary]="true"></p-checkbox><span>Remember device</span></label>
+        <a>Forgot password?</a>
+      </div>
+
+      <button pButton type="submit" class="w-100" label="Access dashboard" icon="pi pi-lock-open" [loading]="loading"></button>
+    </form>
+  </div>
+</section>
